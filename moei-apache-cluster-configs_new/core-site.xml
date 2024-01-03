@@ -1,0 +1,11 @@
+<configuration>
+    <property>
+        <name>fs.defaultFS</name>
+        <value>hdfs://moeihacluster</value>
+    </property>
+    <property>
+        <name>hadoop.tmp.dir</name>
+        <value>/path/to/hadoop/tmp</value>
+    </property>
+</configuration>
+

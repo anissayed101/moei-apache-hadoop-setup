@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<!--
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License. See accompanying LICENSE file.
+-->
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+    <property>
+            <name>dfs.namenode.name.dir</name>
+            <value>/home/hadoop/HA/data/nn</value>
+    </property>
+<property>
+            <name>dfs.replication</name>
+            <value>1</value>
+    </property>
+<property>
+            <name>dfs.permissions</name>
+            <value>false</value>
+    </property>
+<property>
+            <name>dfs.nameservices</name>
+            <value>ha-cluster</value>
+    </property>
+
+<property>
+  <name>dfs.ha.namenodes.ha-cluster</name>
+  <value>nn1,nn2</value>
+</property>
+
+
+<property>
+  <name>dfs.namenode.rpc-address.ha-cluster.nn1</name>
+  <value>bbi-lab1.test.local:9000</value>
+</property>
+<property>
+  <name>dfs.namenode.rpc-address.ha-cluster.nn2</name>
+  <value>bbi-lab2.test.local:9000</value>
+</property>
+
+<property>
+  <name>dfs.namenode.http-address.ha-cluster.nn1</name>
+  <value>bbi-lab1.test.local:50070</value>
+</property>
+<property>
+  <name>dfs.namenode.http-address.ha-cluster.nn2</name>
+  <value>bbi-lab2.test.local:50070</value>
+</property>
+
+<property>
+  <name>dfs.namenode.shared.edits.dir</name>
+  <value>qjournal://bbi-lab1.test.local:8485;bbi-lab2.test.local:8485;bbi-lab3.test.local:8485/ha-cluster</value>
+</property>
+
+<property>
+  <name>dfs.client.failover.proxy.provider.ha-cluster</name>
+  <value>org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider</value>
+</property>
+
+
+<property>
+   <name>dfs.ha.automatic-failover.enabled</name>
+   <value>true</value>
+ </property>
+
+<property>
+   <name>ha.zookeeper.quorum</name>
+   <value>bbi-lab1.test.local:2181,bbi-lab2.test.local:2181,bbi-lab3.test.local:2181</value>
+ </property>
+<property>
+      <name>dfs.ha.fencing.methods</name>
+      <value>sshfence</value>
+    </property>
+
+    <property>
+      <name>dfs.ha.fencing.ssh.private-key-files</name>
+      <value>/home/hadoop/.ssh/id_rsa</value>
+    </property>
+
+    <property>
+            <name>dfs.datanode.data.dir</name>
+            <value>/home/hadoop/data/dn</value>
+    </property>
+
+
+<!-- 26 Dec 2023 Cotrol edit files By Anis Sayed to control NameNode edits-->
+
+<property>
+<name>dfs.namenode.num.checkpoints.retained</name>
+<value>2</value>
+</property>
+<property>
+<name>dfs.namenode.num.extra.edits.retained</name>
+<value>5</value>
+</property>
+<property>
+<name>dfs.namenode.retain.edits</name>
+<value>2</value>
+</property>
+<!-- 26 Dec 2023 Cotrol edit files By Anis Sayed to control NameNode edits-->
+
+<!--28 Dec 2023 By Moataz Saeed to Enhance performance by dedicating specfic port 8040 for communications/heartbeats with datanodes-->
+<property>
+    <name>dfs.namenode.servicerpc-address.ha-cluster.nn1</name>
+    <value>bbi-lab1.test.local:8099</value>
+  </property>
+
+  <property>
+    <name>dfs.namenode.servicerpc-address.ha-cluster.nn2</name>
+    <value>bbi-lab2.test.local:8099</value>
+  </property>
+
+<property>
+    <name>dfs.namenode.lifeline.rpc-address.ha-cluster.nn1</name>
+    <value>bbi-lab1.test.local:8050</value>
+  </property>
+
+  <property>
+    <name>dfs.namenode.lifeline.rpc-address.ha-cluster.nn2</name>
+    <value>bbi-lab2.test.local:8050</value>
+  </property>
+<property>
+    <name>dfs.namenode.handler.count</name> <!-- The value is calcuated as  20 * log 2 (no. of datanodes) -->
+    <value>32</value>
+  </property>
+  <property>
+    <name>dfs.namenode.service.handler.count</name> <!-- The value is calcuated as  (dfs.namenode.handler.count)/2 -->
+    <value>16</value>
+  </property>
+<property>
+    <name>dfs.namenode.accesstime.precision</name>
+    <value>0</value>
+  </property>
+<!--28 Dec 2023 By Moataz Saeed to Enhance performance as Cloudera recommends-->
+
+
+</configuration>
