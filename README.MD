@@ -11,8 +11,8 @@ Below are the config file locations
 6. zoo.cfg (located in $ZOOKEEPER_HOME/conf/zoo.cfg)
 
 
-*NOTE:*
-*Please replace /path/to/hadoop, /path/to/java, /path/to/private/key, /path/to/zookeeper/data*
+**NOTE:**
+**Please replace /path/to/hadoop, /path/to/java, /path/to/private/key, /path/to/zookeeper/data**
 
 
 
